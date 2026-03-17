@@ -1,0 +1,496 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🩺 Medical Assistant (Multi-Specialist)</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f9; padding: 30px; }
+    h2 { color: #333; }
+    textarea { width: 100%; height: 120px; font-size: 15px; padding: 10px; }
+    button { margin-top: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    .card { background: #fff; padding: 20px; border-radius: 10px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>🧠 Medical Multi-Specialist Assistant (LLaMA-3)</h2>
+  <p>Enter your medical question:</p>
+  <textarea id="query" placeholder="e.g., persistent headaches and nausea..."></textarea><br>
+  <button onclick="sendQuery()">Submit</button>
+
+  <div class="card" id="output">Your results will appear here...</div>
+
+  <script>
+    async function sendQuery() {
+      const query = document.getElementById("query").value.trim();
+      const output = document.getElementById("output");
+      if (!query) { output.textContent = "⚠️ Please enter a query."; return; }
+
+      output.textContent = "⏳ Processing query...";
+      try {
+        const res = await fetch("/api/query", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query })
+        });
+        const data = await res.json();
+        if (data.error) { output.textContent = "❌ " + data.error; return; }
+
+        let resultHTML = `### 🧩 Domain Analysis\n${marked.parse(data.analysis)}\n\n`;
+        for (const key in data) {
+          if (key.startsWith("specialist_")) {
+            resultHTML += `### 🩺 ${key.replace("specialist_", "").toUpperCase()}\n${marked.parse(data[key])}\n`;
+          }
+        }
+        resultHTML += `### 🧠 Final Summary\n${marked.parse(data.final_summary)}`;
+        output.innerHTML = resultHTML;
+      } catch (err) {
+        output.textContent = "❌ Error: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html> -->
+
+<!-- ####################################################################################################################### -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🩺 Medical Assistant (Refinement)</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f5f6fa; padding:30px; }
+    textarea, input { width:100%; padding:10px; font-size:15px; }
+    button { padding:10px 20px; margin-top:10px; cursor:pointer; }
+    .card { background:#fff; padding:20px; border-radius:10px; margin-top:20px; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+  <h2>🧠 Medical Multi-Specialist Assistant</h2>
+  <textarea id="query" placeholder="Describe your symptoms..."></textarea><br>
+  <button onclick="submitQuery()">Submit</button>
+
+  <div class="card hidden" id="resultBox">
+    <h3>Model Summary:</h3>
+    <div id="output"></div>
+    <div id="feedbackButtons">
+      <button onclick="satisfied()">✅ Satisfied</button>
+      <button onclick="notSatisfied()">❌ Not Satisfied</button>
+    </div>
+    <div id="refineSection" class="hidden">
+      <p>Please provide more details about your symptoms:</p>
+      <input id="details" placeholder="e.g., dizziness, nausea..." />
+      <button onclick="sendRefinement()">Submit Details</button>
+    </div>
+  </div>
+
+  <script>
+    let lastQuery = "";
+
+    async function submitQuery() {
+      const q = document.getElementById("query").value.trim();
+      if (!q) return alert("Enter a query.");
+      lastQuery = q;
+      document.getElementById("output").textContent = "⏳ Loading...";
+      const res = await fetch("/api/query", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({query:q})
+      });
+      const data = await res.json();
+      if (data.error) return alert(data.error);
+      document.getElementById("resultBox").classList.remove("hidden");
+      document.getElementById("output").innerHTML = marked.parse(data.summary);
+      document.getElementById("refineSection").classList.add("hidden");
+    }
+
+    function satisfied() {
+      alert("✅ Thank you! Stay healthy.");
+      document.getElementById("resultBox").classList.add("hidden");
+    }
+
+    function notSatisfied() {
+      document.getElementById("refineSection").classList.remove("hidden");
+    }
+
+    async function sendRefinement() {
+      const details = document.getElementById("details").value.trim();
+      if (!details) return alert("Please provide additional details.");
+      document.getElementById("output").textContent = "🔁 Refining response...";
+      const res = await fetch("/api/refine", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({query:lastQuery, details})
+      });
+      const data = await res.json();
+      if (data.error) return alert(data.error);
+      document.getElementById("output").innerHTML = marked.parse(data.summary);
+      document.getElementById("refineSection").classList.add("hidden");
+      lastQuery = data.query;  // update for next iteration
+    }
+  </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🧠 Medical Assistant (Persistent)</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f5f9; padding:30px; }
+    textarea, input { width:100%; padding:10px; font-size:15px; }
+    button { padding:8px 16px; margin-top:10px; cursor:pointer; }
+    .card { background:#fff; padding:15px; border-radius:10px; margin-top:15px; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+  <h2>🩺 Persistent Medical Assistant (LLaMA-3)</h2>
+
+  <div id="chatBox"></div>
+
+  <textarea id="query" placeholder="Describe your symptoms..."></textarea><br>
+  <button onclick="sendQuery()">Submit</button>
+
+  <div class="hidden" id="feedbackSection">
+    <p>Are you satisfied with the result?</p>
+    <button onclick="satisfied()">✅ Satisfied</button>
+    <button onclick="showRefinement()">❌ Not Satisfied</button>
+  </div>
+
+  <div class="hidden" id="refineSection">
+    <input id="details" placeholder="Please provide more details..." />
+    <button onclick="refineQuery()">Refine</button>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chatBox');
+
+    async function sendQuery() {
+      const query = document.getElementById('query').value.trim();
+      if (!query) return alert("Please enter a query.");
+      appendMessage("👤 You", query);
+      appendMessage("🤖 Assistant", "⏳ Thinking...");
+      const res = await fetch("/api/query", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({query})
+      });
+      const data = await res.json();
+      document.querySelector("#feedbackSection").classList.remove("hidden");
+      updateLastAssistant(data.summary);
+    }
+
+    async function refineQuery() {
+      const details = document.getElementById('details').value.trim();
+      if (!details) return alert("Please enter details.");
+      appendMessage("👤 You (Clarification)", details);
+      appendMessage("🤖 Assistant", "🔁 Refining...");
+      const res = await fetch("/api/refine", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({details})
+      });
+      const data = await res.json();
+      updateLastAssistant(data.summary);
+      document.querySelector("#refineSection").classList.add("hidden");
+      document.querySelector("#feedbackSection").classList.remove("hidden");
+    }
+
+    function showRefinement() {
+      document.querySelector("#feedbackSection").classList.add("hidden");
+      document.querySelector("#refineSection").classList.remove("hidden");
+    }
+
+    function satisfied() {
+      alert("✅ Thank you for confirming. Session will reset.");
+      fetch("/api/reset", {method:"POST"});
+      document.location.reload();
+    }
+
+    function appendMessage(sender, message) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `<b>${sender}:</b><br>${marked.parse(message)}`;
+      chatBox.appendChild(card);
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function updateLastAssistant(message) {
+      const cards = chatBox.getElementsByClassName('card');
+      const lastCard = cards[cards.length - 1];
+      lastCard.innerHTML = `<b>🤖 Assistant:</b><br>${marked.parse(message)}`;
+    }
+  </script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🧠 AI Medical Assistant + Home Remedies</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background:#f5f7fb; padding:30px; }
+    textarea, input { width:100%; padding:10px; font-size:15px; border-radius:8px; border:1px solid #ccc; }
+    button { padding:8px 16px; margin-top:10px; cursor:pointer; border:none; background:#2E8B57; color:white; border-radius:6px; font-size:15px; }
+    button:hover { background:#45a049; }
+    .card { background:#fff; padding:15px; border-radius:10px; margin-top:15px; box-shadow:0 0 5px rgba(0,0,0,0.1); }
+    .grid { display:flex; flex-wrap:wrap; gap:15px; }
+    .remedy-card { flex:1 1 calc(33% - 10px); background:#fff; padding:15px; border-radius:10px; box-shadow:0 0 5px rgba(0,0,0,0.1); text-align:center; }
+    .remedy-card img { max-width:100%; border-radius:8px; margin-top:10px; }
+    h2 { color:#333; }
+    .hidden { display:none; }
+    .learn-box { background:#f0f4f7; padding:10px; border-radius:8px; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <h2>🩺 AI Medical Assistant (Detailed + Remedies)</h2>
+
+  <div id="chatBox"></div>
+
+  <textarea id="query" placeholder="Describe your symptoms..."></textarea><br>
+  <button onclick="sendQuery()">Submit</button>
+
+  <div class="hidden" id="feedbackSection">
+    <p>Are you satisfied with the result?</p>
+    <button style="background:#2E8B57;" onclick="satisfied()">✅ Satisfied</button>
+    <button style="background:#C0392B;" onclick="showRefinement()">❌ Not Satisfied</button>
+  </div>
+
+  <div class="hidden" id="refineSection">
+    <input id="details" placeholder="Please provide more details..." />
+    <button onclick="refineQuery()">Refine</button>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chatBox');
+
+    async function sendQuery() {
+      const query = document.getElementById('query').value.trim();
+      if (!query) return alert("Please enter a query.");
+      appendMessage("👤 You", query);
+      appendMessage("🤖 Assistant", "⏳ Generating detailed responses...");
+      const res = await fetch("/api/query", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({query})
+      });
+      const data = await res.json();
+      updateLastAssistant(data.summary);
+      if (data.remedies && data.remedies.length > 0) showRemedies(data.remedies);
+      document.querySelector("#feedbackSection").classList.remove("hidden");
+    }
+
+    async function refineQuery() {
+      const details = document.getElementById('details').value.trim();
+      if (!details) return alert("Please enter details.");
+      appendMessage("👤 You (Clarification)", details);
+      appendMessage("🤖 Assistant", "🔁 Refining with new details...");
+      const res = await fetch("/api/refine", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({details})
+      });
+      const data = await res.json();
+      updateLastAssistant(data.summary);
+      if (data.remedies && data.remedies.length > 0) showRemedies(data.remedies);
+      document.querySelector("#refineSection").classList.add("hidden");
+      document.querySelector("#feedbackSection").classList.remove("hidden");
+    }
+
+    function showRefinement() {
+      document.querySelector("#feedbackSection").classList.add("hidden");
+      document.querySelector("#refineSection").classList.remove("hidden");
+    }
+
+    function satisfied() {
+      alert("✅ Thank you! Session will reset.");
+      fetch("/api/reset", {method:"POST"});
+      document.location.reload();
+    }
+
+    function appendMessage(sender, message) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `<b>${sender}:</b><br>${marked.parse(message)}`;
+      chatBox.appendChild(card);
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function updateLastAssistant(message) {
+      const cards = chatBox.getElementsByClassName('card');
+      const lastCard = cards[cards.length - 1];
+      lastCard.innerHTML = `<b>🤖 Assistant:</b><br>${marked.parse(message)}`;
+    }
+
+    function showRemedies(remedies) {
+      const grid = document.createElement("div");
+      grid.className = "grid";
+      remedies.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "remedy-card";
+        div.innerHTML = `
+          <h4>🌿 ${r.condition}</h4>
+          <p><b>💊 Remedy:</b> ${r.remedy || "—"}</p>
+          <p><b>🧘 Yoga:</b> ${r.yoga || "—"}</p>
+          ${r.image ? `<img src="${r.image}" alt="${r.condition}">` : ""}
+          <button onclick="learnMore('${r.condition}')">ℹ️ Learn More</button>
+          <div id="learn-${r.condition.replace(/\\s+/g, '-')}" class="learn-box hidden"></div>
+        `;
+        grid.appendChild(div);
+      });
+      chatBox.appendChild(grid);
+    }
+
+    async function learnMore(topic) {
+      const id = "learn-" + topic.replace(/\s+/g, '-');
+      const box = document.getElementById(id);
+      box.classList.remove("hidden");
+      box.innerHTML = "⏳ Generating safe usage info...";
+      const res = await fetch("/api/learn_more", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({topic})
+      });
+      const data = await res.json();
+      box.innerHTML = `<b>ℹ️ ${data.topic}:</b><br>${marked.parse(data.guide)}`;
+    }
+  </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🧠 Medical Assistant + Remedies</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background:#f5f7fb; padding:30px; }
+    textarea, input { width:100%; padding:10px; font-size:15px; border-radius:8px; border:1px solid #ccc; }
+    button { padding:8px 16px; margin-top:10px; cursor:pointer; border:none; background:#2E8B57; color:white; border-radius:6px; font-size:15px; }
+    button:hover { background:#45a049; }
+    .card { background:#fff; padding:15px; border-radius:10px; margin-top:15px; box-shadow:0 0 5px rgba(0,0,0,0.1); }
+    .grid { display:flex; flex-wrap:wrap; gap:15px; justify-content:center; }
+    .remedy-card { flex:1 1 calc(33% - 10px); background:#fff; padding:15px; border-radius:10px; box-shadow:0 0 5px rgba(0,0,0,0.1); text-align:center; }
+    .remedy-card img { max-width:100%; border-radius:8px; margin-top:10px; }
+    h2 { color:#333; }
+    .hidden { display:none; }
+    .learn-box { background:#f0f4f7; padding:10px; border-radius:8px; margin-top:10px; text-align:left; }
+    @media (max-width: 768px) {
+      .remedy-card { flex:1 1 100%; }
+    }
+  </style>
+</head>
+<body>
+  <h2>🩺 AI Medical Assistant (Detailed + Home Remedies)</h2>
+
+  <div id="chatBox"></div>
+
+  <textarea id="query" placeholder="Describe your symptoms..."></textarea><br>
+  <button onclick="sendQuery()">Submit</button>
+
+  <div class="hidden" id="feedbackSection">
+    <p>Are you satisfied with the result?</p>
+    <button style="background:#2E8B57;" onclick="satisfied()">✅ Satisfied</button>
+    <button style="background:#C0392B;" onclick="showRefinement()">❌ Not Satisfied</button>
+  </div>
+
+  <div class="hidden" id="refineSection">
+    <input id="details" placeholder="Please provide more details..." />
+    <button onclick="refineQuery()">Refine</button>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chatBox');
+
+    async function sendQuery() {
+      const query = document.getElementById('query').value.trim();
+      if (!query) return alert("Please enter a query.");
+      appendMessage("👤 You", query);
+      appendMessage("🤖 Assistant", "⏳ Generating detailed medical responses...");
+      const res = await fetch("/api/query", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({query})
+      });
+      const data = await res.json();
+      updateLastAssistant(data.summary);
+      if (data.remedies && data.remedies.length > 0) showRemedies(data.remedies);
+      document.querySelector("#feedbackSection").classList.remove("hidden");
+    }
+
+    async function refineQuery() {
+      const details = document.getElementById('details').value.trim();
+      if (!details) return alert("Please enter details.");
+      appendMessage("👤 You (Clarification)", details);
+      appendMessage("🤖 Assistant", "🔁 Refining with additional context...");
+      const res = await fetch("/api/refine", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({details})
+      });
+      const data = await res.json();
+      updateLastAssistant(data.summary);
+      if (data.remedies && data.remedies.length > 0) showRemedies(data.remedies);
+      document.querySelector("#refineSection").classList.add("hidden");
+      document.querySelector("#feedbackSection").classList.remove("hidden");
+    }
+
+    function showRefinement() {
+      document.querySelector("#feedbackSection").classList.add("hidden");
+      document.querySelector("#refineSection").classList.remove("hidden");
+    }
+
+    function satisfied() {
+      alert("✅ Thank you! Session will reset.");
+      fetch("/api/reset", {method:"POST"});
+      document.location.reload();
+    }
+
+    function appendMessage(sender, message) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `<b>${sender}:</b><br>${marked.parse(message)}`;
+      chatBox.appendChild(card);
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function updateLastAssistant(message) {
+      const cards = chatBox.getElementsByClassName('card');
+      const lastCard = cards[cards.length - 1];
+      lastCard.innerHTML = `<b>🤖 Assistant:</b><br>${marked.parse(message)}`;
+    }
+
+    function showRemedies(remedies) {
+      const grid = document.createElement("div");
+      grid.className = "grid";
+      remedies.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "remedy-card";
+        div.innerHTML = `
+          <h4>🌿 ${r.condition}</h4>
+          <p><b>💊 Remedy:</b> ${r.remedy || "—"}</p>
+          <p><b>🧘 Yoga:</b> ${r.yoga || "—"}</p>
+          ${r.image ? `<img src="${r.image}" alt="${r.condition}">` : ""}
+          <button onclick="learnMore('${r.condition}')">ℹ️ Learn More</button>
+          <div id="learn-${r.condition.replace(/\\s+/g, '-')}" class="learn-box hidden"></div>
+        `;
+        grid.appendChild(div);
+      });
+      chatBox.appendChild(grid);
+    }
+
+    async function learnMore(topic) {
+      const id = "learn-" + topic.replace(/\s+/g, '-');
+      const box = document.getElementById(id);
+      box.classList.remove("hidden");
+      box.innerHTML = "⏳ Generating safe usage info...";
+      const res = await fetch("/api/learn_more", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({topic})
+      });
+      const data = await res.json();
+      box.innerHTML = `<b>ℹ️ ${data.topic}:</b><br>${marked.parse(data.guide)}`;
+    }
+  </script>
+</body>
+</html>

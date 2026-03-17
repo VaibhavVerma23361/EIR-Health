@@ -1,0 +1,452 @@
+[
+  {
+    "id": 1,
+    "ailment": "Dry Cough",
+    "remedy": "Honey and Pepper Mix",
+    "ingredients": "1 tsp honey, a pinch of black pepper",
+    "instructions": "Mix well and lick twice a day.",
+    "caution": "Avoid for children under 1 year.",
+    "note": "Soothes throat and reduces dry cough."
+  },
+  {
+    "id": 2,
+    "ailment": "Migraine",
+    "remedy": "Cold Compress",
+    "ingredients": "Cold water, clean cloth",
+    "instructions": "Apply compress to forehead for 10 minutes.",
+    "caution": "Avoid very cold ice directly on skin.",
+    "note": "Relieves pain by reducing blood flow to head."
+  },
+  {
+    "id": 3,
+    "ailment": "Nasal Congestion",
+    "remedy": "Eucalyptus Steam",
+    "ingredients": "Hot water, few drops eucalyptus oil",
+    "instructions": "Inhale steam for 5 minutes.",
+    "caution": "Avoid close contact with hot water.",
+    "note": "Clears nasal passages effectively."
+  },
+  {
+    "id": 4,
+    "ailment": "Sore Muscles",
+    "remedy": "Apple Cider Vinegar Rub",
+    "ingredients": "2 tbsp apple cider vinegar, warm water",
+    "instructions": "Rub on sore muscles and leave for 10 minutes.",
+    "caution": "Avoid on cuts or sensitive skin.",
+    "note": "Reduces muscle stiffness and soreness."
+  },
+  {
+    "id": 5,
+    "ailment": "Mouth Odor",
+    "remedy": "Salt and Baking Soda Rinse",
+    "ingredients": "1/2 tsp salt, 1/2 tsp baking soda, 1 cup water",
+    "instructions": "Gargle twice daily.",
+    "caution": "Do not swallow.",
+    "note": "Kills bacteria and freshens breath."
+  },
+  {
+    "id": 6,
+    "ailment": "Chapped Hands",
+    "remedy": "Coconut Oil and Sugar Scrub",
+    "ingredients": "1 tbsp coconut oil, 1 tbsp sugar",
+    "instructions": "Rub gently and rinse after 5 minutes.",
+    "caution": "Avoid on wounds.",
+    "note": "Exfoliates and moisturizes hands."
+  },
+  {
+    "id": 7,
+    "ailment": "Cold Feet",
+    "remedy": "Ginger Foot Soak",
+    "ingredients": "1 tbsp grated ginger, warm water tub",
+    "instructions": "Soak feet for 15 minutes.",
+    "caution": "Check water temperature.",
+    "note": "Improves circulation and warmth."
+  },
+  {
+    "id": 8,
+    "ailment": "Dark Lips",
+    "remedy": "Beetroot Balm",
+    "ingredients": "1 tsp beetroot juice, 1 tsp coconut oil",
+    "instructions": "Apply daily on lips.",
+    "caution": "Store refrigerated.",
+    "note": "Naturally lightens lip color."
+  },
+  {
+    "id": 9,
+    "ailment": "Cholesterol",
+    "remedy": "Oats Breakfast",
+    "ingredients": "1 bowl oats, milk or water",
+    "instructions": "Eat as breakfast daily.",
+    "caution": "Avoid sugar additives.",
+    "note": "Lowers bad cholesterol."
+  },
+  {
+    "id": 10,
+    "ailment": "Stomach Ulcer",
+    "remedy": "Cabbage Juice",
+    "ingredients": "1 cup cabbage, water",
+    "instructions": "Blend and drink before meals.",
+    "caution": "Avoid if bloating occurs.",
+    "note": "Heals stomach lining naturally."
+  },
+  {
+    "id": 11,
+    "ailment": "Dehydration",
+    "remedy": "ORS Drink",
+    "ingredients": "1 tsp sugar, 1/2 tsp salt, 1 glass water",
+    "instructions": "Stir and drink slowly.",
+    "caution": "Avoid excess salt.",
+    "note": "Replenishes lost electrolytes."
+  },
+  {
+    "id": 12,
+    "ailment": "High Sugar Levels",
+    "remedy": "Bitter Gourd Juice",
+    "ingredients": "1 bitter gourd, water",
+    "instructions": "Blend and drink in the morning.",
+    "caution": "Avoid if low blood sugar.",
+    "note": "Helps control blood glucose."
+  },
+  {
+    "id": 13,
+    "ailment": "Cough with Phlegm",
+    "remedy": "Licorice Tea",
+    "ingredients": "1 tsp licorice root, 1 cup water",
+    "instructions": "Boil and sip warm.",
+    "caution": "Avoid excessive use.",
+    "note": "Loosens mucus naturally."
+  },
+  {
+    "id": 14,
+    "ailment": "Weak Digestion",
+    "remedy": "Asafoetida Water",
+    "ingredients": "A pinch of asafoetida, 1 cup warm water",
+    "instructions": "Mix and drink after meals.",
+    "caution": "Avoid overuse.",
+    "note": "Relieves gas and indigestion."
+  },
+  {
+    "id": 15,
+    "ailment": "Cold Allergy",
+    "remedy": "Turmeric Water",
+    "ingredients": "1/2 tsp turmeric, 1 glass warm water",
+    "instructions": "Drink every morning.",
+    "caution": "Avoid on empty stomach if sensitive.",
+    "note": "Boosts immunity and reduces inflammation."
+  },
+  {
+    "id": 16,
+    "ailment": "Menstrual Fatigue",
+    "remedy": "Jaggery Drink",
+    "ingredients": "1 tbsp jaggery, 1 glass warm milk",
+    "instructions": "Mix and drink daily during cycle.",
+    "caution": "Avoid if diabetic.",
+    "note": "Restores energy and iron levels."
+  },
+  {
+    "id": 17,
+    "ailment": "Acne Scars",
+    "remedy": "Lemon and Honey Mix",
+    "ingredients": "1 tsp lemon juice, 1 tsp honey",
+    "instructions": "Apply on scars, rinse after 15 mins.",
+    "caution": "Avoid sun exposure after use.",
+    "note": "Lightens scars naturally."
+  },
+  {
+    "id": 18,
+    "ailment": "Throat Infection",
+    "remedy": "Cinnamon Tea",
+    "ingredients": "1 tsp cinnamon powder, 1 cup hot water",
+    "instructions": "Steep and sip twice a day.",
+    "caution": "Avoid during pregnancy.",
+    "note": "Kills throat bacteria."
+  },
+  {
+    "id": 19,
+    "ailment": "Joint Stiffness",
+    "remedy": "Castor Oil Massage",
+    "ingredients": "2 tbsp castor oil",
+    "instructions": "Warm and massage joints daily.",
+    "caution": "Avoid open wounds.",
+    "note": "Lubricates joints and relieves stiffness."
+  },
+  {
+    "id": 20,
+    "ailment": "Hair Dandruff",
+    "remedy": "Lemon Rinse",
+    "ingredients": "2 tbsp lemon juice, 1 cup water",
+    "instructions": "Apply after shampooing, rinse after 5 mins.",
+    "caution": "Avoid on colored hair.",
+    "note": "Removes dandruff and refreshes scalp."
+  },
+  {
+    "id": 21,
+    "ailment": "Gas Trouble",
+    "remedy": "Ajwain Seeds",
+    "ingredients": "1 tsp ajwain seeds",
+    "instructions": "Chew after meals.",
+    "caution": "Avoid excess consumption.",
+    "note": "Aids digestion and relieves gas."
+  },
+  {
+    "id": 22,
+    "ailment": "Low Appetite",
+    "remedy": "Ginger Salt Mix",
+    "ingredients": "1 small ginger slice, pinch of salt",
+    "instructions": "Eat before meals.",
+    "caution": "Avoid on ulcers.",
+    "note": "Stimulates appetite naturally."
+  },
+  {
+    "id": 23,
+    "ailment": "Skin Rashes",
+    "remedy": "Oatmeal Bath",
+    "ingredients": "1 cup oatmeal, warm water tub",
+    "instructions": "Soak for 15 minutes.",
+    "caution": "Pat dry gently.",
+    "note": "Soothes itching and irritation."
+  },
+  {
+    "id": 24,
+    "ailment": "Cold Hands and Feet",
+    "remedy": "Cinnamon Drink",
+    "ingredients": "1 tsp cinnamon, 1 cup hot water",
+    "instructions": "Drink warm twice a day.",
+    "caution": "Avoid overuse.",
+    "note": "Improves blood flow and warmth."
+  },
+  {
+    "id": 25,
+    "ailment": "Oily Skin",
+    "remedy": "Multani Mitti Pack",
+    "ingredients": "2 tbsp multani mitti, rose water",
+    "instructions": "Apply on face and rinse after drying.",
+    "caution": "Avoid over-drying.",
+    "note": "Absorbs excess oil and refreshes skin."
+  },
+  {
+    "id": 26,
+    "ailment": "Tooth Stain",
+    "remedy": "Strawberry Paste",
+    "ingredients": "1 mashed strawberry, pinch of baking soda",
+    "instructions": "Brush with paste for 2 minutes.",
+    "caution": "Use once a week only.",
+    "note": "Whitens teeth naturally."
+  },
+  {
+    "id": 27,
+    "ailment": "Bad Breath",
+    "remedy": "Green Tea",
+    "ingredients": "1 green tea bag, 1 cup hot water",
+    "instructions": "Drink twice daily.",
+    "caution": "Avoid strong brews.",
+    "note": "Freshens breath and reduces bacteria."
+  },
+  {
+    "id": 28,
+    "ailment": "Stress",
+    "remedy": "Lavender Aromatherapy",
+    "ingredients": "Few drops lavender oil, diffuser",
+    "instructions": "Inhale aroma for 10 minutes.",
+    "caution": "Avoid direct skin contact.",
+    "note": "Calms mind and reduces stress."
+  },
+  {
+    "id": 29,
+    "ailment": "Sleepiness",
+    "remedy": "Peppermint Tea",
+    "ingredients": "1 tsp peppermint leaves, 1 cup water",
+    "instructions": "Boil and sip warm.",
+    "caution": "Avoid before bed if sensitive.",
+    "note": "Refreshes and energizes body."
+  },
+  {
+    "id": 30,
+    "ailment": "Weak Nails",
+    "remedy": "Olive Oil Soak",
+    "ingredients": "2 tbsp olive oil, warm water bowl",
+    "instructions": "Soak nails for 10 minutes.",
+    "caution": "Dry hands properly after use.",
+    "note": "Strengthens and nourishes nails."
+  },
+  {
+    "id": 31,
+    "ailment": "Eye Strain",
+    "remedy": "Cucumber Eye Pack",
+    "ingredients": "2 cucumber slices, cold water",
+    "instructions": "Place on closed eyes for 10 minutes.",
+    "caution": "Ensure cucumber is clean.",
+    "note": "Reduces puffiness and eye fatigue."
+  },
+  {
+    "id": 32,
+    "ailment": "Back Pain",
+    "remedy": "Hot Water Bottle Therapy",
+    "ingredients": "Hot water bottle, warm towel",
+    "instructions": "Apply to affected area for 15 minutes.",
+    "caution": "Check temperature before use.",
+    "note": "Relieves muscle tension and pain."
+  },
+  {
+    "id": 33,
+    "ailment": "Indigestion",
+    "remedy": "Fennel Seed Tea",
+    "ingredients": "1 tsp fennel seeds, 1 cup hot water",
+    "instructions": "Steep for 5 minutes and drink warm.",
+    "caution": "Avoid during pregnancy.",
+    "note": "Aids digestion and reduces bloating."
+  },
+  {
+    "id": 34,
+    "ailment": "Dry Skin",
+    "remedy": "Aloe Vera Gel",
+    "ingredients": "Fresh aloe vera gel",
+    "instructions": "Apply directly on dry areas.",
+    "caution": "Test for allergies first.",
+    "note": "Deeply moisturizes and heals skin."
+  },
+  {
+    "id": 35,
+    "ailment": "Insomnia",
+    "remedy": "Chamomile Tea",
+    "ingredients": "1 tsp chamomile flowers, 1 cup hot water",
+    "instructions": "Steep for 5 minutes, drink before bed.",
+    "caution": "Avoid if allergic to daisies.",
+    "note": "Promotes relaxation and better sleep."
+  },
+  {
+    "id": 36,
+    "ailment": "Anemia",
+    "remedy": "Beetroot Juice",
+    "ingredients": "1 beetroot, 1 apple, water",
+    "instructions": "Blend and drink daily morning.",
+    "caution": "Avoid if kidney stones present.",
+    "note": "Rich in iron and folate."
+  },
+  {
+    "id": 37,
+    "ailment": "Constipation",
+    "remedy": "Triphala Powder",
+    "ingredients": "1 tsp triphala powder, warm water",
+    "instructions": "Mix and drink before bed.",
+    "caution": "Start with small dose.",
+    "note": "Natural laxative and digestive aid."
+  },
+  {
+    "id": 38,
+    "ailment": "Sunburn",
+    "remedy": "Yogurt Cool Pack",
+    "ingredients": "Plain yogurt, cold water",
+    "instructions": "Apply on affected area for 15 minutes.",
+    "caution": "Use plain, unsweetened yogurt.",
+    "note": "Soothes and cools sunburned skin."
+  },
+  {
+    "id": 39,
+    "ailment": "Varicose Veins",
+    "remedy": "Horse Chestnut Compress",
+    "ingredients": "Horse chestnut gel, warm water",
+    "instructions": "Apply gently on affected veins.",
+    "caution": "Avoid broken skin.",
+    "note": "Improves circulation and reduces swelling."
+  },
+  {
+    "id": 40,
+    "ailment": "Brittle Hair",
+    "remedy": "Egg Hair Mask",
+    "ingredients": "1 egg, 2 tbsp olive oil",
+    "instructions": "Apply on hair for 20 minutes, then wash.",
+    "caution": "Use cool water to rinse.",
+    "note": "Strengthens hair with protein."
+  },
+  {
+    "id": 41,
+    "ailment": "Hiccups",
+    "remedy": "Sugar and Water",
+    "ingredients": "1 tsp sugar, 1 glass water",
+    "instructions": "Swallow sugar dry, then drink water.",
+    "caution": "Avoid for diabetics.",
+    "note": "Interrupts hiccup reflex."
+  },
+  {
+    "id": 42,
+    "ailment": "Nosebleed",
+    "remedy": "Cold Compress on Neck",
+    "ingredients": "Ice pack or cold cloth",
+    "instructions": "Apply to back of neck for 5 minutes.",
+    "caution": "Don't tilt head back.",
+    "note": "Constricts blood vessels to stop bleeding."
+  },
+  {
+    "id": 43,
+    "ailment": "Earache",
+    "remedy": "Warm Garlic Oil",
+    "ingredients": "2 drops warm garlic oil",
+    "instructions": "Put 2 drops in affected ear.",
+    "caution": "Ensure oil is lukewarm, not hot.",
+    "note": "Natural antibiotic and pain reliever."
+  },
+  {
+    "id": 44,
+    "ailment": "Leg Cramps",
+    "remedy": "Magnesium Oil Massage",
+    "ingredients": "Magnesium oil or Epsom salt water",
+    "instructions": "Massage into cramping muscles.",
+    "caution": "Avoid broken skin.",
+    "note": "Relieves muscle spasms and cramps."
+  },
+  {
+    "id": 45,
+    "ailment": "Pink Eye",
+    "remedy": "Chamomile Eye Wash",
+    "ingredients": "Chamomile tea bag, cooled water",
+    "instructions": "Use as eye wash 3 times daily.",
+    "caution": "Use sterile preparation.",
+    "note": "Reduces inflammation and irritation."
+  },
+  {
+    "id": 46,
+    "ailment": "Warts",
+    "remedy": "Tea Tree Oil Application",
+    "ingredients": "1 drop tea tree oil, carrier oil",
+    "instructions": "Apply directly on wart twice daily.",
+    "caution": "Dilute for sensitive skin.",
+    "note": "Natural antiviral properties."
+  },
+  {
+    "id": 47,
+    "ailment": "Hangover",
+    "remedy": "Coconut Water",
+    "ingredients": "Fresh coconut water",
+    "instructions": "Drink 1-2 glasses slowly.",
+    "caution": "Avoid if diabetic.",
+    "note": "Rehydrates and replenishes electrolytes."
+  },
+  {
+    "id": 48,
+    "ailment": "Motion Sickness",
+    "remedy": "Ginger Chew",
+    "ingredients": "Fresh ginger slice or ginger candy",
+    "instructions": "Chew 30 minutes before travel.",
+    "caution": "Avoid on empty stomach.",
+    "note": "Prevents nausea and dizziness."
+  },
+  {
+    "id": 49,
+    "ailment": "Cracked Heels",
+    "remedy": "Petroleum Jelly Wrap",
+    "ingredients": "Petroleum jelly, socks",
+    "instructions": "Apply thick layer, wear socks overnight.",
+    "caution": "Ensure feet are clean and dry.",
+    "note": "Deep moisturizes and heals cracks."
+  },
+  {
+    "id": 50,
+    "ailment": "Burning Eyes",
+    "remedy": "Rose Water Drops",
+    "ingredients": "Pure rose water",
+    "instructions": "Put 1-2 drops in each eye.",
+    "caution": "Use only pure, sterile rose water.",
+    "note": "Soothes and cools irritated eyes."
+  }
+]
